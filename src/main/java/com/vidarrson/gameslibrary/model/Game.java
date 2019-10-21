@@ -1,10 +1,25 @@
 package com.vidarrson.gameslibrary.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "games")
 public class Game {
+    @Id
+    @Column(name = "game_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "game_title")
     private String title;
+
+    @Column(name = "game_genre")
     private String genre;
+
+    @Column(name = "game_developer")
     private String developer;
+
+    @Column(name = "game_price")
     private int price;
 
     public int getId() {
