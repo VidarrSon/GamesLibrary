@@ -53,8 +53,11 @@
 
 <br/>
 <br/>
-
 <h1>Games Library</h1>
+<input type="search" name="search" placeholder="Search"/>
+<input type="submit" value="Search">
+<br/>
+<br/>
 
 <c:if test="${!empty listGames}">
     <table class="tg">
@@ -70,7 +73,7 @@
         <c:forEach items="${listGames}" var="game">
             <tr>
                 <td>${game.id}</td>
-                <td>${game.title}</td>
+                <td><a href="<c:url value='/gamedata/${game.id}' />" target="_blank">${game.title}</a></td>
                 <td>${game.genre}</td>
                 <td>${game.developer}</td>
                 <td>${game.price/100}.${game.price%100}</td>
