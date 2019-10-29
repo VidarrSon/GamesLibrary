@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,19 @@ public class GameDaoImpl implements GameDao{
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(game);
         logger.info("Game successfully added. Game details: " + game);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Game> listGames() {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Game> gameList = session.createQuery("from Game").list();
+
+        for (Game game: gameList) {
+            logger.info("Game list: " + game);
+        }
+
+        return gameList;
     }
 
     @Override
@@ -54,15 +68,12 @@ public class GameDaoImpl implements GameDao{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<Game> listGames() {
+    public Collection<Game> getGames(String search) {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Game> gameList = session.createQuery("from Game").list();
-
-        for (Game game: gameList) {
-            logger.info("Game list: " + game);
+        if (search==null || search.trim().isEmpty()) {
+            return session.createQuery("from Game").list();
         }
-
-        return gameList;
+        return session.createQuery("select c from Game where c.title like :search").
+                setParameter("search", search.trim() + "%").list();
     }
 }
