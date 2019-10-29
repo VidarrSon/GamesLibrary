@@ -65,12 +65,10 @@ public class Game {
     // for logging
     @Override
     public String toString() {
-        return "Game{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", genre='" + genre + '\'' +
-                ", developer='" + developer + '\'' +
-                ", price=" + price +
-                '}';
+        return "Game ID: " + id +
+                "\nTitle: " + title +
+                "\nGenre: " + genre +
+                "\nDeveloper: " + developer +
+                "\nPrice: " + price / 100 + "." + price % 100;
     }
 }

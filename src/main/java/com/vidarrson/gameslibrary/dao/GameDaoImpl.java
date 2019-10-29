@@ -36,7 +36,7 @@ public class GameDaoImpl implements GameDao{
     @Override
     public void removeGame(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Game game = session.load(Game.class, id);
+        Game game = (Game) session.load(Game.class, id);
 
         if (game != null) {
             session.delete(game);
@@ -47,7 +47,7 @@ public class GameDaoImpl implements GameDao{
     @Override
     public Game getGameById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Game game = session.load(Game.class, id);
+        Game game = (Game) session.load(Game.class, id);
         logger.info("Game successfully loaded. Game details: " + game);
 
         return game;
@@ -57,7 +57,7 @@ public class GameDaoImpl implements GameDao{
     @SuppressWarnings("unchecked")
     public List<Game> listGames() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Game> gameList = session.createQuery("from games").list();
+        List<Game> gameList = session.createQuery("from Game").list();
 
         for (Game game: gameList) {
             logger.info("Game list: " + game);

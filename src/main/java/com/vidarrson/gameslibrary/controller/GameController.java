@@ -21,7 +21,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @RequestMapping(value = "games", method = RequestMethod.GET)
+    @RequestMapping(value = "/games", method = RequestMethod.GET)
     public String listGames(Model model){
         model.addAttribute("game", new Game());
         model.addAttribute("listGames", this.gameService.listGames());
@@ -40,7 +40,7 @@ public class GameController {
         return "redirect:/games";
     }
 
-    @RequestMapping(value = "/remove/{id}")
+    @RequestMapping("/remove/{id}")
     public String removeGame(@PathVariable("id") int id){
         this.gameService.removeGame(id);
 
@@ -49,7 +49,7 @@ public class GameController {
 
     @RequestMapping("edit/{id}")
     public String editGame(@PathVariable("id") int id, Model model){
-        model.addAttribute("game", gameService.getGameById(id));
+        model.addAttribute("game", this.gameService.getGameById(id));
         model.addAttribute("listGames", this.gameService.listGames());
 
         return "games";
