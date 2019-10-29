@@ -5,6 +5,7 @@ import com.vidarrson.gameslibrary.model.Game;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -19,6 +20,12 @@ public class GameServiceImpl implements GameService{
     @Transactional
     public void addGame(Game game) {
         this.gameDao.addGame(game);
+    }
+
+    @Override
+    @Transactional
+    public List<Game> listGames() {
+        return this.gameDao.listGames();
     }
 
     @Override
@@ -41,7 +48,7 @@ public class GameServiceImpl implements GameService{
 
     @Override
     @Transactional
-    public List<Game> listGames() {
-        return this.gameDao.listGames();
+    public Collection<Game> getGames(String search) {
+        return this.gameDao.getGames(search);
     }
 }
