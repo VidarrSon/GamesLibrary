@@ -71,9 +71,9 @@ public class GameDaoImpl implements GameDao{
     public Collection<Game> getGames(String search) {
         Session session = this.sessionFactory.getCurrentSession();
         if (search==null || search.trim().isEmpty()) {
-            return session.createQuery("from Game").list();
+            return session.createQuery("from games").list();
         }
-        return session.createQuery("select c from Game where c.title like :search").
+        return session.createQuery("select c from games where c.title like :search").
                 setParameter("search", search.trim() + "%").list();
     }
 }

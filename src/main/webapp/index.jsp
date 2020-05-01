@@ -4,9 +4,11 @@
     <title>Games Library</title>
 </head>
 <body>
-    <h3>Vidarrson presents</h3>
-    <br/>
-    <a href="/games" target="_blank">Games Library</a>
-    <br/>
+<br>
+<h1 style="text-align: center">Vidarrson presents</h1>
+<br>
+<form align="center" action="${pageContext.request.contextPath}/games">
+    <input type="submit" value="Games Library">
+</form>
 </body>
 </html>

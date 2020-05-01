@@ -10,12 +10,14 @@
 
     <style type="text/css">
         .tg {
+            text-align: center;
             border-collapse: collapse;
             border-spacing: 0;
             border-color: #ccc;
         }
 
         .tg td {
+            text-align: center;
             font-family: Arial, sans-serif;
             font-size: 14px;
             padding: 10px 5px;
@@ -29,6 +31,7 @@
         }
 
         .tg th {
+            text-align: center;
             font-family: Arial, sans-serif;
             font-size: 14px;
             font-weight: normal;
@@ -41,10 +44,6 @@
             color: #333;
             background-color: #f0f0f0;
         }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
     </style>
 
 </head>
@@ -53,30 +52,32 @@
 
 <br/>
 <br/>
-<h1>Games Library</h1>
-<input type="search" name="search" placeholder="Search"/>
-<input type="submit" value="Search">
+<h1 style="text-align: center">Games Library</h1>
+<form align="center">
+    <input style="text-align: center" type="search" name="search" placeholder="Search"/>
+    <input style="text-align: center" type="submit" value="Search">
+</form>
 <br/>
 <br/>
 
 <c:if test="${!empty listGames}">
-    <table class="tg">
+    <table align="center" class="tg">
         <tr>
-            <th width="80">ID</th>
-            <th width="120">Title</th>
-            <th width="120">Genre</th>
-            <th width="120">Developer</th>
-            <th width="120">Price</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
+            <th style="width: 50px">ID</th>
+            <th style="width: 120px">Title</th>
+            <th style="width: 120px">Genre</th>
+            <th style="width: 120px">Developer</th>
+            <th style="width: 80px">Price</th>
+            <th style="width: 80px">Edit</th>
+            <th style="width: 80px">Delete</th>
         </tr>
         <c:forEach items="${listGames}" var="game">
             <tr>
                 <td>${game.id}</td>
-                <td><a href="<c:url value='/gamedata/${game.id}' />" target="_blank">${game.title}</a></td>
+                <td><a href="/gamedata/${game.id}" target="_blank">${game.title}</a></td>
                 <td>${game.genre}</td>
                 <td>${game.developer}</td>
-                <td>${game.price/100}.${game.price%100}</td>
+                <td>${game.price}</td>
                 <td><a href="<c:url value='/edit/${game.id}'/>">Edit</a> </td>
                 <td><a href="<c:url value='/remove/${game.id}'/>">Delete</a> </td>
             </tr>
@@ -84,12 +85,13 @@
     </table>
 </c:if>
 
-<h1>Add a Game</h1>
+<br>
+<h1 style="text-align: center">Add a Game</h1>
 
 <c:url var="addAction" value="/games/add"/>
 
 <form:form action="${addAction}" commandName="game">
-    <table>
+    <table align="center">
         <c:if test="${!empty game.title}">
             <tr>
                 <td>
@@ -146,12 +148,11 @@
         <tr>
             <td colspan="2">
                 <c:if test="${!empty game.title}">
-                    <input type="submit"
+                    <input align="center" type="submit"
                            value="<spring:message text="Edit Game"/>"/>
                 </c:if>
                 <c:if test="${empty game.title}">
-                    <input type="submit"
-                           value="<spring:message text="Add Game"/>"/>
+                    <input align="center" type="submit" value="<spring:message text="Add Game"/>"/>
                 </c:if>
             </td>
         </tr>

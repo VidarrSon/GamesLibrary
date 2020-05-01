@@ -69,6 +69,6 @@ public class Game {
                 "\nTitle: " + title +
                 "\nGenre: " + genre +
                 "\nDeveloper: " + developer +
-                "\nPrice: " + price / 100 + "." + price % 100;
+                "\nPrice: " + price;
     }
 }
